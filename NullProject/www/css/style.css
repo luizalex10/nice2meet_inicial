@@ -1,0 +1,9 @@
+/* Empty. Add your own CSS if you like */
+
+.fundo-wonder {
+    background-color: black;
+    background-image: url('../img/wonder.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}

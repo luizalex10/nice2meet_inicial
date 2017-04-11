@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html ng-app="ionicApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+    <link rel="manifest" href="manifest.json">
+    <!-- un-comment this code to enable service worker
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.log('Error', err));
+      }
+    </script>-->
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+</head>
+
+<body ng-app="starter">
+
+    <ion-header-bar class="bar-dark">
+        <h1 class="title">INICIAL</h1>
+    </ion-header-bar>
+    <ion-content class="fundo-wonder">
+
+        <div style="height: 75%">
+
+        </div>
+
+        <div style="height: 25%;">
+            <div ng-controller="AppLoginModalCtrl">
+                <button class="button button-full button-positive" ng-click="modal.show()">
+                      LOGIN
+                    </button>
+            </div>
+
+            <div ng-controller="AppCriarUsuarioCtrl">
+                <button class="button button-full button-positive" ng-click="modal.show()">
+                      CRIAR CONTA
+                    </button>
+            </div>
+        </div>
+
+    </ion-content>
+
+    <!-- INÍCIO DAS MODAIS -->
+    <!-- MODAL PARA CRIAR USUÁRIO -->
+    <script id="templates/criarUsuario.html" type="text/ng-template">
+        <ion-modal-view>
+            <ion-header-bar class="bar bar-header bar-positive">
+                <h1 class="title">CRIAR NOVO USUÁRIO</h1>
+                <button class="button button-clear button-primary" ng-click="modal.hide()">cancelar</button>
+            </ion-header-bar>
+            <ion-content class="padding">
+                <div class="list">
+
+                    <label class="item item-input">
+                      <span class="input-label">NOME</span>
+                      <input ng-model="newUser.firstName" type="text">
+                    </label>
+
+                    <label class="item item-input">
+                      <span class="input-label">E-MAIL</span>
+                      <input ng-model="newUser.email" type="text">
+                    </label>
+
+                    <label class="item item-input">
+                      <span class="input-label">SENHA</span>
+                      <input ng-model="newUser.password" type="text">
+                    </label>
+
+                    <label class="item item-input">
+                      <span class="input-label">CONFIRMAR SENHA</span>
+                      <input ng-model="newUser.password" type="text">
+                    </label>
+
+                    <button class="button button-full button-positive" ng-click="createContact(newUser)">FINALIZAR</button>
+                </div>
+            </ion-content>
+        </ion-modal-view>
+    </script>
+
+    <!-- MODAL PARA LOGAR -->
+    <script id="templates/logarUsuario.html" type="text/ng-template">
+        <ion-modal-view>
+            <ion-header-bar class="bar bar-header bar-positive">
+                <h1 class="title">LOGIN</h1>
+                <button class="button button-clear button-primary" ng-click="modal.hide()">cancelar</button>
+            </ion-header-bar>
+            <ion-content class="padding">
+                <div class="list" ng-controller="AppGoRoute">
+
+                    <label class="item item-input">
+                      <span class="input-label">E-MAIL</span>
+                      <input ng-model="newUser.email" type="text">
+                    </label>
+
+                    <label class="item item-input">
+                      <span class="input-label">SENHA</span>
+                      <input ng-model="newUser.password" type="text">
+                    </label>
+
+                    <button class="button button-full button-positive" ng-click="modal.show()">ENTRAR</button>
+                </div>
+            </ion-content>
+        </ion-modal-view>
+    </script>
+    <!-- FIM DAS MODAIS -->
+
+
+    <!-- PAGINA HOME -->
+    <script id="templates/homeApp.html" type="text/ng-template">
+        <ion-modal-view>
+            <ion-header-bar class="bar bar-header bar-positive">
+                <h1 class="title">HOME</h1>
+
+            </ion-header-bar>
+            <ion-content class="padding">
+                <div class="list">
+                    <div style="padding-top: 2%; padding-bottom: 2%">
+                        <a class="button button-icon icon ion-help-circled">  COMO JOGAR</a></br>
+                    </div>
+                    <div style="padding-bottom: 2%">
+                        <a class="button button-icon icon ion-map">  VERIFICAR O MAPA</a></br>
+                    </div>
+                    <div style="padding-bottom: 2%">
+                        <a class="button button-icon icon ion-pizza">  RESGARTAR DESCONTO</a></br>
+                    </div>
+                    <div style="padding-bottom: 2%">
+                        <a class="button button-icon icon ion-play">  VER QUIZZES</a></br>
+                    </div>
+
+                    <button class="button button-calm ion-android-walk" ng-click="alert('Saindo....');'"> SAIR</button>
+                </div>
+            </ion-content>
+        </ion-modal-view>
+    </script>
+    <!-- FIM -->
+
+</body>
+
+</html>
