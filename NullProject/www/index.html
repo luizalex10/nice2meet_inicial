@@ -15,6 +15,11 @@
           .catch(err => console.log('Error', err));
       }
     </script>-->
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKOJMdUd48G84CXxW3pPkGSdGa57rTbdo&callback=initMap">
+    </script>
+
+
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
@@ -31,6 +36,9 @@
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/directives.js"></script>
+
 </head>
 
 <body ng-app="starter">
@@ -130,15 +138,18 @@
         <ion-modal-view>
             <ion-header-bar class="bar bar-header bar-positive">
                 <h1 class="title">HOME</h1>
-
+                <button class="button button-calm ion-android-walk" style="width: 30%;" ng-click="modal.hide()"> SAIR</button>
             </ion-header-bar>
             <ion-content class="padding">
                 <div class="list">
                     <div style="padding-top: 2%; padding-bottom: 2%">
                         <a class="button button-icon icon ion-help-circled">  COMO JOGAR</a></br>
                     </div>
-                    <div style="padding-bottom: 2%">
-                        <a class="button button-icon icon ion-map">  VERIFICAR O MAPA</a></br>
+                    <div style="padding-bottom: 2%" ng-controller="AppGoMap">
+                        <a class="button button-icon icon ion-map" ng-click="modal.show()">
+                            <button class="button button-clear button-positive">VERIFICAR O MAPA</button>
+                        </a>
+                        </br>
                     </div>
                     <div style="padding-bottom: 2%">
                         <a class="button button-icon icon ion-pizza">  RESGARTAR DESCONTO</a></br>
@@ -146,13 +157,43 @@
                     <div style="padding-bottom: 2%">
                         <a class="button button-icon icon ion-play">  VER QUIZZES</a></br>
                     </div>
-
-                    <button class="button button-calm ion-android-walk" ng-click="alert('Saindo....');'"> SAIR</button>
                 </div>
             </ion-content>
         </ion-modal-view>
     </script>
-    <!-- FIM -->
+    <!-- FIM HOME -->
+
+
+    <!-- PAGINA MAPA -->
+    <script id="templates/mapaPage.html" type="text/ng-template">
+        <ion-modal-view>
+            <ion-header-bar class="bar bar-header bar-positive">
+                <h1 class="title">MAPA</h1>
+                <button class="button button-clear button-primary" ng-click="modal.hide()">cancelar</button>
+            </ion-header-bar>
+            <ion-content class="padding" ng-controller="MapCtrl">
+
+
+                <ion-content scroll="false">
+                    <map on-create="mapCreated(map)"></map>
+                </ion-content>
+
+                <ion-footer-bar class="bar-stable">
+                    <a ng-click="centerOnMe()" class="button button-icon icon ion-navigate"></a>
+                </ion-footer-bar>
+
+                <div class="list">
+
+
+
+                </div>
+            </ion-content>
+        </ion-modal-view>
+    </script>
+    <!-- FIM MAPA -->
+
+
+
 
 </body>
 

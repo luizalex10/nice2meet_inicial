@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var appMain = angular.module('starter', ['ionic'])
+var appMain = angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives'])
 
 appMain.run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
@@ -24,7 +24,15 @@ appMain.run(function($ionicPlatform) {
 });
 
 
-var app = angular.module('ionicApp', ['ionic']);
+var app = angular.module('ionicApp', ['ionic', 'starter.controllers', 'starter.directives']);
+
+app.run(function($ionicPlatform) {
+    $ionicPlatform.ready(function() {
+        if (window.StatusBar) {
+            StatusBar.styleDefault();
+        }
+    });
+})
 
 
 app.controller('AppCriarUsuarioCtrl', function($scope, $ionicModal, $location) {
@@ -70,6 +78,18 @@ app.controller('AppGoRoute', function($scope, $ionicModal) {
 
 
     $ionicModal.fromTemplateUrl('templates/homeApp.html', {
+        scope: $scope
+    }).then(function(modal) {
+        $scope.modal = modal;
+    });
+
+});
+
+
+app.controller('AppGoMap', function($scope, $ionicModal) {
+
+
+    $ionicModal.fromTemplateUrl('templates/mapaPage.html', {
         scope: $scope
     }).then(function(modal) {
         $scope.modal = modal;
