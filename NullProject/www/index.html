@@ -16,7 +16,7 @@
       }
     </script>-->
 
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKOJMdUd48G84CXxW3pPkGSdGa57rTbdo&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSXVH_zes7hTCQOLUdH7OPubR0WOUtQ0c&callback=initMap">
     </script>
 
 
@@ -43,24 +43,39 @@
 
 <body ng-app="starter">
 
-    <ion-header-bar class="bar-dark">
-        <h1 class="title">INICIAL</h1>
+    <ion-header-bar>
+        <h1 class="title" style="text-align:center">Nice2Meet</h1>
     </ion-header-bar>
-    <ion-content class="fundo-wonder">
+    <ion-content class="fundo">
 
-        <div style="height: 75%">
-
+        <div style="height: 60%">
+            <img src="../img/mappa_google.png" class="icon">
         </div>
 
-        <div style="height: 25%;">
+        <div style="height: 15%;">
+            <div class="list">
+                <center>
+                    <label class="item item-input">
+                        <span class="input-label">Usuário</span>
+                        <input type="text">
+                    </label>
+                    <label class="item item-input">
+                        <span class="input-label">Senha</span>
+                        <input type="password">
+                    </label>
+                </center>
+            </div>
+        </div>
+
+        <div style="height: 10%;">
             <div ng-controller="AppLoginModalCtrl">
-                <button class="button button-full button-positive" ng-click="modal.show()">
-                      LOGIN
+                <button class="button button-full button-nature" ng-click="modal.show()">
+                      ENTRAR
                     </button>
             </div>
 
             <div ng-controller="AppCriarUsuarioCtrl">
-                <button class="button button-full button-positive" ng-click="modal.show()">
+                <button class="button button-full button-nature" ng-click="modal.show()">
                       CRIAR CONTA
                     </button>
             </div>
@@ -81,25 +96,26 @@
 
                     <label class="item item-input">
                       <span class="input-label">NOME</span>
-                      <input ng-model="newUser.firstName" type="text">
+                      <input ng-model="usuario.nome" type="text">
                     </label>
 
                     <label class="item item-input">
                       <span class="input-label">E-MAIL</span>
-                      <input ng-model="newUser.email" type="text">
+                      <input ng-model="usuario.email" type="text">
                     </label>
 
                     <label class="item item-input">
                       <span class="input-label">SENHA</span>
-                      <input ng-model="newUser.password" type="text">
+                      <input ng-model="usuario.senha" type="text">
                     </label>
 
                     <label class="item item-input">
                       <span class="input-label">CONFIRMAR SENHA</span>
-                      <input ng-model="newUser.password" type="text">
+                      <input ng-model="usuario.confirmaSenha" type="text">
                     </label>
+                    {{error}}
 
-                    <button class="button button-full button-positive" ng-click="createContact(newUser)">FINALIZAR</button>
+                    <button class="button button-full button-positive" ng-click="createContact(usuario)">FINALIZAR</button>
                 </div>
             </ion-content>
         </ion-modal-view>

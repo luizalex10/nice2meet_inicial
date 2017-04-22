@@ -35,13 +35,9 @@ app.run(function($ionicPlatform) {
 })
 
 
-app.controller('AppCriarUsuarioCtrl', function($scope, $ionicModal, $location) {
+app.controller('AppCriarUsuarioCtrl', function($scope, $ionicModal, $location, $http) {
 
-    $scope.contacts = [
-        { name: 'Gordon Freeman' },
-        { name: 'Barney Calhoun' },
-        { name: 'Lamarr the Headcrab' },
-    ];
+    $scope.contacts = [];
 
     $ionicModal.fromTemplateUrl('templates/criarUsuario.html', {
         scope: $scope
@@ -50,8 +46,17 @@ app.controller('AppCriarUsuarioCtrl', function($scope, $ionicModal, $location) {
     });
 
     $scope.createContact = function(u) {
-        $scope.contacts.push({ name: u.firstName + ' ' + u.email });
-        $scope.modal.hide();
+        if (u.senha == u.confirmaSenha){
+            $scope.error = ""
+            $scope.contacts.push({ name: u.nome, email : u.email, senha : u.senha });
+            //console.log($scope.contacts);
+            var res = $http.post('http://projeto-nice2meet-barbaromatrix.c9users.io/cadastroTeste', $scope.contacts);
+            res.success(function(data, status, headers, config) {
+                console.log(data);
+            });
+        } else {
+            $scope.error = "As senhas não conferem"
+        }    
     };
 
 });
@@ -96,3 +101,18 @@ app.controller('AppGoMap', function($scope, $ionicModal) {
     });
 
 });
+
+/*app.service('random', function($http){
+    this.retorna = function(){
+        return $http.get('http://projeto-nice2meet-barbaromatrix.c9users.io/teste');
+    };
+});
+
+app.controller('AppTeste', function($scope, random){
+    $scope.retornaDado = function(){
+        $scope.dados = random.retorna().then(function(res){
+            $scope.dados = res.data;
+        });
+    };
+});
+*/
